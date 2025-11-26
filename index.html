@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marka+ Trial+ | Strategic AI for Founders</title>
+    <meta name="description" content="Stop Asking AI for Generic Marketing Garbage. Get a strategic audit and context-rich prompt." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              brand: {
+                cyan: "#06B6D4",
+                blue: "#3B82F6",
+                emerald: "#10B981",
+                rose: "#FB7185",
+                bg: "#020617", // Slate 950
+                surface: "#0B1120",
+                card: "rgba(15, 23, 42, 0.95)",
+              }
+            },
+            backgroundImage: {
+              'hero-glow': "radial-gradient(circle at 0% 0%, rgba(6, 182, 212, 0.16), transparent 60%), radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.18), transparent 60%)",
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom scrollbar for code blocks */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.5);
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.3);
+        border-radius: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(148, 163, 184, 0.5);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+  }
+}
+</script>
+</head>
+  <body class="bg-[#020617] text-slate-50 antialiased selection:bg-cyan-500/30 selection:text-cyan-100">
+    <div id="root"></div>
+  </body>
+</html>

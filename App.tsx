@@ -9,8 +9,11 @@ import FoundationPlusComingSoon from './components/FoundationPlusComingSoon';
 import PricingPage from './components/PricingPage';
 import FAQPage from './components/FAQPage';
 
+export type Language = 'en' | 'id';
+
 function App() {
   const [view, setView] = useState<'landing' | 'wizard' | 'how-it-works' | 'foundation-plus-addons' | 'what-you-get' | 'foundation-plus-coming-soon' | 'pricing' | 'faq'>('landing');
+  const [lang, setLang] = useState<Language>('en');
 
   // Simple hash-based routing handler to support back/forward buttons loosely
   useEffect(() => {
@@ -136,6 +139,8 @@ function App() {
       onNavigateToFoundationPlus={() => navigate('foundation-plus-coming-soon')}
       onNavigateToPricing={() => navigate('pricing')}
       onNavigateToFAQ={() => navigate('faq')}
+      lang={lang}
+      setLang={setLang}
     />
   );
 }

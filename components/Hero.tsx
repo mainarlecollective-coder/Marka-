@@ -1,13 +1,18 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { TRANSLATIONS } from '../translations';
+import { Language } from '../App';
 
 interface HeroProps {
   onStartAudit: () => void;
+  lang?: Language;
 }
 
-const Hero = ({ onStartAudit }: HeroProps) => {
+const Hero = ({ onStartAudit, lang = 'en' }: HeroProps) => {
   const [step, setStep] = useState(0);
+  const t = TRANSLATIONS[lang].hero;
 
   // Animation sequence loop
   useEffect(() => {
@@ -53,19 +58,19 @@ const Hero = ({ onStartAudit }: HeroProps) => {
         >
           <div className="inline-block px-3 py-1 mb-6 rounded-full border border-brand-cyan/30 bg-brand-cyan/10">
             <span className="text-brand-cyan font-mono text-xs tracking-wider font-semibold">
-              // STRATEGIC AI FOR FOUNDERS
+              {t.tag}
             </span>
           </div>
           
           <h1 className="font-display text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
-            Stop Asking AI for <br className="hidden lg:block"/>
+            {t.titleStart} <br className="hidden lg:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-cyan">
-              Generic Marketing Garbage.
+              {t.titleHighlight}
             </span>
           </h1>
           
           <p className="text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 max-w-xl">
-            Marka+ turns your business into a strategic, context-rich prompt so AI finally gives you real marketing strategy instead of recycled templates.
+            {t.subtitle}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -74,7 +79,7 @@ const Hero = ({ onStartAudit }: HeroProps) => {
               className="relative group overflow-hidden rounded-full bg-gradient-to-r from-brand-cyan to-brand-blue p-[1px]"
             >
               <div className="relative bg-slate-900 group-hover:bg-slate-900/50 transition-colors rounded-full px-8 py-4 flex items-center gap-2">
-                 <span className="font-semibold text-white relative z-10">Start Free Strategic Audit</span>
+                 <span className="font-semibold text-white relative z-10">{t.ctaPrimary}</span>
                  <ArrowRight className="w-4 h-4 text-white relative z-10 group-hover:translate-x-1 transition-transform" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-r from-brand-cyan to-brand-blue opacity-20 group-hover:opacity-100 transition-opacity blur-md"></div>
@@ -83,12 +88,12 @@ const Hero = ({ onStartAudit }: HeroProps) => {
               onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-4 rounded-full text-slate-300 hover:text-white hover:bg-white/5 transition-all font-medium"
             >
-              See how it works ↓
+              {t.ctaSecondary}
             </button>
           </div>
           
           <p className="text-sm text-slate-500 font-mono">
-            ✓ Free • ✓ No credit card • ✓ ~20 min • ✓ Keep the prompt
+            {t.trust}
           </p>
         </motion.div>
 
@@ -110,7 +115,7 @@ const Hero = ({ onStartAudit }: HeroProps) => {
                 <span className="text-brand-rose font-mono text-xs font-bold">✗ BAD INPUT</span>
               </div>
               <div className="font-mono text-sm text-slate-300 mb-4 bg-slate-950/50 p-3 rounded">
-                "Give me a marketing strategy"
+                "{t.badInput}"
               </div>
               
               <AnimatePresence>
@@ -123,7 +128,7 @@ const Hero = ({ onStartAudit }: HeroProps) => {
                     <div className="h-2 w-3/4 bg-slate-800 rounded animate-pulse"></div>
                     <div className="h-2 w-1/2 bg-slate-800 rounded animate-pulse"></div>
                     <div className="text-xs text-brand-rose/80 font-mono mt-2">
-                      → Generic outputs: "Post on TikTok", "Run Ads"
+                      {t.badOutput}
                     </div>
                   </motion.div>
                 )}
@@ -142,7 +147,7 @@ const Hero = ({ onStartAudit }: HeroProps) => {
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-brand-cyan"></div>
               <div className="flex justify-between items-center mb-3">
-                <span className="text-brand-cyan font-mono text-xs font-bold">✓ TRIAL+ STRATEGIC PROMPT</span>
+                <span className="text-brand-cyan font-mono text-xs font-bold">{t.goodInputLabel}</span>
               </div>
               
               <div className="font-mono text-xs text-slate-400 mb-4 bg-slate-950/80 p-3 rounded space-y-1 h-32 overflow-hidden relative">
@@ -167,15 +172,15 @@ const Hero = ({ onStartAudit }: HeroProps) => {
                    animate={{ opacity: 1, y: 0 }}
                    className="space-y-2 border-t border-slate-800 pt-3"
                  >
-                   <div className="text-xs text-brand-emerald font-mono mb-1">→ STRATEGIC OUTPUT:</div>
+                   <div className="text-xs text-brand-emerald font-mono mb-1">{t.goodOutputLabel}</div>
                    <div className="text-xs text-slate-300">
-                     • Focus purely on long-tail SEO for "Founders"
+                     {t.goodOutput1}
                    </div>
                    <div className="text-xs text-slate-300">
-                     • Ignore paid ads due to budget constraints
+                     {t.goodOutput2}
                    </div>
                    <div className="text-xs text-slate-300">
-                     • 90-Day execution roadmap tailored to 1 person
+                     {t.goodOutput3}
                    </div>
                  </motion.div>
                 )}

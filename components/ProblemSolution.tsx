@@ -1,33 +1,45 @@
+
 import React from 'react';
 import { PROBLEM_CARDS, SOLUTION_FEATURES } from '../constants';
+import { TRANSLATIONS } from '../translations';
+import { Language } from '../App';
 
-const ProblemSolution = () => {
+interface ProblemSolutionProps {
+  lang?: Language;
+}
+
+const ProblemSolution = ({ lang = 'en' }: ProblemSolutionProps) => {
+  const t = TRANSLATIONS[lang];
+
   return (
     <>
       {/* Problem Section */}
       <section id="problem" className="py-24 bg-brand-surface relative overflow-hidden">
         <div className="container mx-auto px-4 lg:px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-brand-rose font-mono text-sm font-bold tracking-wider">// THE PROBLEM</span>
+            <span className="text-brand-rose font-mono text-sm font-bold tracking-wider">{t.problem.tag}</span>
             <h2 className="font-display text-3xl md:text-4xl font-bold mt-4 mb-6">
-              The Problem Isn’t AI. <br />
-              It’s the Way You Talk to It.
+              {t.problem.title}
             </h2>
             <p className="text-slate-400 text-lg">
-              When you ask, "Give me a marketing plan" with zero context, AI has no idea about your business. Generic input will always produce generic output.
+              {t.problem.desc}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {PROBLEM_CARDS.map((card, idx) => (
-              <div key={idx} className="bg-slate-900/50 p-8 rounded-2xl border border-slate-800 hover:border-brand-rose/30 transition-colors group">
-                <div className={`mb-6 p-3 rounded-lg inline-flex bg-slate-950 ${card.accent}`}>
-                  <card.icon className="w-6 h-6" />
+            {PROBLEM_CARDS.map((card, idx) => {
+              // Get translated content for this card index
+              const translatedCard = t.problem.cards[idx];
+              return (
+                <div key={idx} className="bg-slate-900/50 p-8 rounded-2xl border border-slate-800 hover:border-brand-rose/30 transition-colors group">
+                  <div className={`mb-6 p-3 rounded-lg inline-flex bg-slate-950 ${card.accent}`}>
+                    <card.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{translatedCard ? translatedCard.title : card.title}</h3>
+                  <p className="text-slate-400 leading-relaxed">{translatedCard ? translatedCard.body : card.body}</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{card.title}</h3>
-                <p className="text-slate-400 leading-relaxed">{card.body}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -36,12 +48,12 @@ const ProblemSolution = () => {
       <section id="solution" className="py-24 bg-brand-bg relative">
          <div className="container mx-auto px-4 lg:px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
-                <span className="text-brand-cyan font-mono text-sm font-bold tracking-wider">// THE SOLUTION</span>
+                <span className="text-brand-cyan font-mono text-sm font-bold tracking-wider">{t.solution.tag}</span>
                 <h2 className="font-display text-3xl md:text-4xl font-bold mt-4 mb-6">
-                  Trial+ is a Strategic Thinking Workshop <br/> Disguised as a Form.
+                  {t.solution.title}
                 </h2>
                 <p className="text-slate-400 text-lg">
-                  Trial+ walks you through 7 focused modules that teach you how to think strategically while capturing the context AI actually needs.
+                  {t.solution.desc}
                 </p>
             </div>
 
@@ -57,15 +69,18 @@ const ProblemSolution = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {SOLUTION_FEATURES.map((feature, idx) => (
-                  <div key={idx} className="p-6 rounded-xl border border-slate-800 bg-slate-900/30 hover:bg-slate-900/60 transition-colors">
-                    <div className={`mb-4 ${feature.accent}`}>
-                        <feature.icon className="w-6 h-6" />
+                {SOLUTION_FEATURES.map((feature, idx) => {
+                  const translatedFeature = t.solution.features[idx];
+                  return (
+                    <div key={idx} className="p-6 rounded-xl border border-slate-800 bg-slate-900/30 hover:bg-slate-900/60 transition-colors">
+                      <div className={`mb-4 ${feature.accent}`}>
+                          <feature.icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-bold text-lg mb-2 text-slate-200">{translatedFeature ? translatedFeature.title : feature.title}</h3>
+                      <p className="text-sm text-slate-400 leading-relaxed">{translatedFeature ? translatedFeature.body : feature.body}</p>
                     </div>
-                    <h3 className="font-bold text-lg mb-2 text-slate-200">{feature.title}</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">{feature.body}</p>
-                  </div>
-                ))}
+                  );
+                })}
             </div>
          </div>
       </section>

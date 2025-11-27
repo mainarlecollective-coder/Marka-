@@ -232,8 +232,6 @@ export default function TrialPlusWizard({ onBack, onNavigateToFoundationPlus }: 
   
   // Support Modal State
   const [showSupportModal, setShowSupportModal] = useState(false);
-  const [supportAmount, setSupportAmount] = useState<number | null>(null);
-  const [customAmount, setCustomAmount] = useState("");
 
   const updateField = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -355,10 +353,7 @@ Your response must include:
   };
 
   const handlePayment = () => {
-      const finalAmount = customAmount ? parseInt(customAmount) : supportAmount;
-      if (finalAmount) {
-         window.open(`https://example.com/pay?amount=${finalAmount}`, '_blank');
-      }
+      window.open(`https://trakteer.id/marka_plus/tip`, '_blank');
       setShowSupportModal(false);
   }
 
@@ -696,48 +691,18 @@ Your response must include:
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-3 mb-4">
-                                {[25000, 50000, 100000].map((amt) => (
-                                    <button
-                                        key={amt}
-                                        onClick={() => { setSupportAmount(amt); setCustomAmount(""); }}
-                                        className={`py-3 px-2 rounded-xl border text-sm font-bold transition-all ${
-                                            supportAmount === amt 
-                                            ? 'bg-brand-cyan text-slate-950 border-brand-cyan' 
-                                            : 'bg-slate-900 border-slate-700 text-slate-300 hover:border-slate-600'
-                                        }`}
-                                    >
-                                        Rp {amt / 1000}k
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div className="mb-8">
-                                <label className="text-xs text-slate-500 mb-2 block font-medium">Or enter custom amount</label>
-                                <div className="relative">
-                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">Rp</span>
-                                    <input 
-                                        type="number" 
-                                        value={customAmount}
-                                        onChange={(e) => { setCustomAmount(e.target.value); setSupportAmount(null); }}
-                                        className="w-full bg-slate-900 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:border-brand-cyan transition-colors"
-                                        placeholder="0"
-                                    />
-                                </div>
-                            </div>
-
                             <div className="flex flex-col gap-3">
                                 <button 
                                     onClick={handlePayment}
                                     className="w-full bg-gradient-to-r from-brand-cyan to-brand-blue hover:shadow-lg hover:shadow-brand-cyan/20 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all"
                                 >
-                                    Continue to contribution <ArrowRight size={16} />
+                                    Donate via Trakteer <ArrowRight size={16} />
                                 </button>
                                 <button 
                                     onClick={() => setShowSupportModal(false)}
                                     className="w-full bg-transparent hover:bg-white/5 text-slate-400 hover:text-white font-medium py-3 rounded-xl transition-colors text-sm"
                                 >
-                                    Maybe later — take me back to my prompt
+                                    Skip Donate — take me back to my prompt
                                 </button>
                             </div>
                         </div>

@@ -65,7 +65,7 @@ const Hero = ({ onStartAudit }: HeroProps) => {
           </h1>
           
           <p className="text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 max-w-xl">
-            Trial+ turns your business into a strategic, context-rich prompt so AI finally gives you real marketing strategy instead of recycled templates.
+            Marka+ turns your business into a strategic, context-rich prompt so AI finally gives you real marketing strategy instead of recycled templates.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-8">

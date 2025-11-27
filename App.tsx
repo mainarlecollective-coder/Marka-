@@ -13,7 +13,22 @@ export type Language = 'en' | 'id';
 
 function App() {
   const [view, setView] = useState<'landing' | 'wizard' | 'how-it-works' | 'foundation-plus-addons' | 'what-you-get' | 'foundation-plus-coming-soon' | 'pricing' | 'faq'>('landing');
-  const [lang, setLang] = useState<Language>('en');
+  
+  // Initialize language from localStorage or default to 'en'
+  const [lang, setLang] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('marka_lang');
+      return (saved === 'en' || saved === 'id') ? saved : 'en';
+    }
+    return 'en';
+  });
+
+  // Persist language change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('marka_lang', lang);
+    }
+  }, [lang]);
 
   // Simple hash-based routing handler to support back/forward buttons loosely
   useEffect(() => {
